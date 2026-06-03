@@ -56,7 +56,7 @@ require_once '../config/db.php';
 }
         }
         .movie-card:hover { transform: scale(1.05); box-shadow: 0 0 30px rgba(229,9,20,0.6); }
-        .movie-card img { width: 100%; height: 380px; object-fit: cover; }
+        .movie-card img { width: 100%; height: 420px; object-fit: cover; }
         .movie-info { padding: 15px; }
         .btn { padding: 12px 25px; background: #e50914; color: white; text-decoration: none; border-radius: 8px; display: inline-block; margin-top: 10px; }
     </style>
@@ -76,11 +76,11 @@ while ($movie = $stmt->fetch()) {
     $poster = "https://via.placeholder.com/300x450/111111/ffffff?text=CINEMA+25";
 
     if (stripos($movie['title'], 'Inside Out') !== false) {
-        $poster = "https://m.media-amazon.com/images/M/MV5BZGI0YzVhY2UtYjJhZS00MWM5LWE4MzEtMzUyNGEzNWQ0Mjk5XkEyXkFqcGc@._V1_.jpg";
+        $poster = "/Users/kushalraj/Desktop/IS35126Group25/public/insideout2.jpeg";
     } elseif (stripos($movie['title'], 'Avengers') !== false) {
-        $poster = "https://m.media-amazon.com/images/I/81ExhpBEbHL.jpg";
+        $poster = "/Users/kushalraj/Desktop/IS35126Group25/public/avengers.jpg";
     } elseif (stripos($movie['title'], 'Moana') !== false) {
-        $poster = "https://m.media-amazon.com/images/M/MV5BNzQzZjBiNTYtZjc5NC00NTY0LWFmMjAtY2I2YWE4NmYwM2NmXkEyXkFqcGc@._V1_.jpg";
+        $poster = "/Users/kushalraj/Desktop/IS35126Group25/public/moana.jpeg";
     }
 
     echo "
