@@ -44,6 +44,16 @@ require_once '../config/db.php';
             border-radius: 12px;
             overflow: hidden;
             transition: all 0.4s;
+            .movie-card img {
+    width: 100%;
+    height: 420px;
+    object-fit: cover;
+    display: block;
+}
+
+.movie-info {
+    padding: 15px;
+}
         }
         .movie-card:hover { transform: scale(1.05); box-shadow: 0 0 30px rgba(229,9,20,0.6); }
         .movie-card img { width: 100%; height: 380px; object-fit: cover; }
@@ -59,16 +69,45 @@ require_once '../config/db.php';
         <h1>NOW SHOWING</h1>
         <div class="movie-grid">
             <?php
-            $stmt = $pdo->query("SELECT * FROM movies ORDER BY status, title");
-            while ($movie = $stmt->fetch()) {
-                echo "<div class='movie-card'>
-                    <h3 style='padding:10px;'>".htmlspecialchars($movie['title'])."</h3>
-                    <p style='padding:0 10px;'>".htmlspecialchars($movie['genre'])." • ".$movie['duration']." min</p>
-                    <p style='padding:0 10px 15px;'>".htmlspecialchars($movie['description'])."</p>
-                    <a href='/customer/book-ticket.php?movie_id=".$movie['id']."' class='btn'>Book Ticket</a>
-                </div>";
-            }
-            ?>
+$stmt = $pdo->query("SELECT * FROM movies ORDER BY status, title");
+
+while ($movie = $stmt->fetch()) {
+
+    $poster = "https://via.placeholder.com/300x450/111111/ffffff?text=CINEMA+25";
+
+    if (stripos($movie['title'], 'Inside Out') !== false) {
+        $poster = "https://m.media-amazon.com/images/M/MV5BZGI0YzVhY2UtYjJhZS00MWM5LWE4MzEtMzUyNGEzNWQ0Mjk5XkEyXkFqcGc@._V1_.jpg";
+    } elseif (stripos($movie['title'], 'Avengers') !== false) {
+        $poster = "https://m.media-amazon.com/images/I/81ExhpBEbHL.jpg";
+    } elseif (stripos($movie['title'], 'Moana') !== false) {
+        $poster = "https://m.media-amazon.com/images/M/MV5BNzQzZjBiNTYtZjc5NC00NTY0LWFmMjAtY2I2YWE4NmYwM2NmXkEyXkFqcGc@._V1_.jpg";
+    }
+
+    echo "
+    <div class='movie-card'>
+
+        <img src='{$poster}' alt='Movie Poster'>
+
+        <div class='movie-info'>
+            <h3>" . htmlspecialchars($movie['title']) . "</h3>
+
+            <p>
+                <strong>Genre:</strong> " . htmlspecialchars($movie['genre']) . "<br>
+                <strong>Duration:</strong> " . htmlspecialchars($movie['duration']) . " min
+            </p>
+
+            <p style='margin-top:10px;'>
+                " . htmlspecialchars($movie['description']) . "
+            </p>
+
+            <a href='/customer/book-ticket.php?movie_id=" . $movie['id'] . "' class='btn'>
+                🎟️ Book Ticket
+            </a>
+        </div>
+
+    </div>";
+}
+?>
         </div>
     </div>
 </body>
