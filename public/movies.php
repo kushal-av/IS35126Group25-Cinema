@@ -94,7 +94,7 @@ require_once '../config/db.php';
         <div class="movie-grid">
             <!-- Avengers: Endgame -->
             <div class='movie-card'>
-                <img src='https://m.media-amazon.com/images/M/MV5BMTc5MDE2ODcwN15BMl5BanBnXkFtZTgwMzI2NzQ2NzM@._V1_.jpg' alt='Avengers Endgame'>
+                <img src='https://m.media-amazon.com/images/M/MV5BMTc5MDE2ODcwN15BMl5BanBnXkFtZTgwMzI2NzQ2NzM@._V1_.jpg' alt='Avengers'>
                 <div class='movie-info'>
                     <h3>Avengers: Endgame</h3>
                     <p>Action • 181 min</p>
