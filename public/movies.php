@@ -83,29 +83,22 @@ while ($movie = $stmt->fetch()) {
         $poster = "/Users/kushalraj/Desktop/IS35126Group25/public/moana.jpeg";
     }
 
-    echo "
-    <div class='movie-card'>
+  echo "<div class='movie-card'>";
 
-        <img src='{$poster}' alt='Movie Poster'>
+if (!empty($movie['poster_url'])) {
+    echo "<img src='".htmlspecialchars($movie['poster_url'])."' alt='Movie Poster'>";
+}
 
-        <div class='movie-info'>
-            <h3>" . htmlspecialchars($movie['title']) . "</h3>
-
-            <p>
-                <strong>Genre:</strong> " . htmlspecialchars($movie['genre']) . "<br>
-                <strong>Duration:</strong> " . htmlspecialchars($movie['duration']) . " min
-            </p>
-
-            <p style='margin-top:10px;'>
-                " . htmlspecialchars($movie['description']) . "
-            </p>
-
-            <a href='/customer/book-ticket.php?movie_id=" . $movie['id'] . "' class='btn'>
-                🎟️ Book Ticket
-            </a>
-        </div>
-
-    </div>";
+echo "
+    <div class='movie-info'>
+        <h3>".htmlspecialchars($movie['title'])."</h3>
+        <p>".htmlspecialchars($movie['genre'])." • ".$movie['duration']." min</p>
+        <p>".htmlspecialchars($movie['description'])."</p>
+        <a href='/customer/book-ticket.php?movie_id=".$movie['id']."' class='btn'>
+            Book Ticket
+        </a>
+    </div>
+</div>";
 }
 ?>
         </div>
