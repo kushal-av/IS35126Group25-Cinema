@@ -8,11 +8,8 @@ require_once '../vendor/autoload.php';
 $client = new Google_Client();
 $client->setClientId('1094750969291-k8itgauro8lav6vs58h4i5hb3aji9fn5.apps.googleusercontent.com');
 $client->setClientSecret('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');
-$redirect_uri =
-    (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http')
-    . '://' . $_SERVER['HTTP_HOST']
-    . '/auth/google-callback.php';
-
+$redirect_uri = 'https://is35126group25-cinema.onrender.com/auth/google-callback.php';
+$client->setRedirectUri($redirect_uri);
 $client->setRedirectUri($redirect_uri);
 
 if (isset($_GET['code'])) {
