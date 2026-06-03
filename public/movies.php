@@ -38,13 +38,14 @@ require_once '../config/db.php';
 
         .container { position: relative; z-index: 2; max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
         h1 { font-size: 3.5rem; text-align: center; margin-bottom: 40px; text-shadow: 0 0 30px #e50914; }
-        .movie-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
-        .movie-card {
-            background: rgba(30,0,0,0.7);
-            border-radius: 12px;
-            overflow: hidden;
-            transition: all 0.4s;
-            .movie-card img {
+       .movie-card {
+    background: rgba(30,0,0,0.7);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.4s;
+}
+
+.movie-card img {
     width: 100%;
     height: 420px;
     object-fit: cover;
@@ -54,11 +55,6 @@ require_once '../config/db.php';
 .movie-info {
     padding: 15px;
 }
-        }
-        .movie-card:hover { transform: scale(1.05); box-shadow: 0 0 30px rgba(229,9,20,0.6); }
-        .movie-card img { width: 100%; height: 420px; object-fit: cover; }
-        .movie-info { padding: 15px; }
-        .btn { padding: 12px 25px; background: #e50914; color: white; text-decoration: none; border-radius: 8px; display: inline-block; margin-top: 10px; }
     </style>
 </head>
 <body>
@@ -68,7 +64,7 @@ require_once '../config/db.php';
     <div class="container">
         <h1>NOW SHOWING</h1>
         <div class="movie-grid">
-            <?php
+<?php
 $stmt = $pdo->query("SELECT * FROM movies ORDER BY status, title");
 
 while ($movie = $stmt->fetch()) {
@@ -76,30 +72,37 @@ while ($movie = $stmt->fetch()) {
     $poster = "https://via.placeholder.com/300x450/111111/ffffff?text=CINEMA+25";
 
     if (stripos($movie['title'], 'Inside Out') !== false) {
-        $poster = "/Users/kushalraj/Desktop/IS35126Group25/public/insideout2.jpeg";
+        $poster = "https://m.media-amazon.com/images/M/MV5BZGI0YzVhY2UtYjJhZS00MWM5LWE4MzEtMzUyNGEzNWQ0Mjk5XkEyXkFqcGc@._V1_.jpg";
     } elseif (stripos($movie['title'], 'Avengers') !== false) {
-        $poster = "/Users/kushalraj/Desktop/IS35126Group25/public/avengers.jpg";
+        $poster = "https://m.media-amazon.com/images/I/81ExhpBEbHL.jpg";
     } elseif (stripos($movie['title'], 'Moana') !== false) {
-        $poster = "/Users/kushalraj/Desktop/IS35126Group25/public/moana.jpeg";
+        $poster = "https://m.media-amazon.com/images/M/MV5BNzQzZjBiNTYtZjc5NC00NTY0LWFmMjAtY2I2YWE4NmYwM2NmXkEyXkFqcGc@._V1_.jpg";
     }
 
-  echo "<div class='movie-card'>";
+    echo "
+    <div class='movie-card'>
+        <img src='{$poster}' alt='Movie Poster'>
 
-if (!empty($movie['poster_url'])) {
-    echo "<img src='".htmlspecialchars($movie['poster_url'])."' alt='Movie Poster'>";
+        <div class='movie-info'>
+            <h3>" . htmlspecialchars($movie['title']) . "</h3>
+
+            <p>
+                " . htmlspecialchars($movie['genre']) . " • "
+                . htmlspecialchars($movie['duration']) . " min
+            </p>
+
+            <p>" . htmlspecialchars($movie['description']) . "</p>
+
+            <a href='/customer/Book-Ticket.php?movie_id=" . $movie['id'] . "' class='btn'>
+                🎟️ Book Ticket
+            </a>
+        </div>
+    </div>";
 }
 
-echo "
-    <div class='movie-info'>
-        <h3>".htmlspecialchars($movie['title'])."</h3>
-        <p>".htmlspecialchars($movie['genre'])." • ".$movie['duration']." min</p>
-        <p>".htmlspecialchars($movie['description'])."</p>
-        <a href='/customer/book-ticket.php?movie_id=".$movie['id']."' class='btn'>
-            Book Ticket
-        </a>
-    </div>
-</div>";
-}
+?>
+    </div>";
+
 ?>
         </div>
     </div>
