@@ -33,12 +33,7 @@ require_once '../config/db.php';
             animation: grain 6s steps(8) infinite;
             z-index: -1;
         }
-        @keyframes grain {
-            0% { transform: translate(0,0); }
-            10% { transform: translate(-1%,2%); }
-            20% { transform: translate(2%,-2%); }
-            100% { transform: translate(0,0); }
-        }
+        @keyframes grain { 0% { transform: translate(0,0); } 10% { transform: translate(-1%,2%); } 20% { transform: translate(2%,-2%); } 100% { transform: translate(0,0); } }
 
         .container { 
             position: relative; 
@@ -55,15 +50,14 @@ require_once '../config/db.php';
         }
         .movie-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 25px;
         }
         .movie-card {
-            background: rgba(30,0,0,0.8);
+            background: rgba(30,0,0,0.85);
             border-radius: 12px;
             overflow: hidden;
             transition: all 0.4s;
-            border: 1px solid #333;
         }
         .movie-card:hover {
             transform: scale(1.05);
@@ -98,21 +92,38 @@ require_once '../config/db.php';
         <h1>NOW SHOWING</h1>
         
         <div class="movie-grid">
-            <?php
-            $stmt = $pdo->query("SELECT * FROM movies ORDER BY status, title");
-            while ($movie = $stmt->fetch()) {
-                echo "
-                <div class='movie-card'>
-                    <img src='https://picsum.photos/id/1015/300/420' alt='Poster'>
-                    <div class='movie-info'>
-                        <h3>" . htmlspecialchars($movie['title']) . "</h3>
-                        <p>" . htmlspecialchars($movie['genre']) . " • " . $movie['duration'] . " min</p>
-                        <p>" . htmlspecialchars($movie['description']) . "</p>
-                        <a href='/customer/book-ticket.php?movie_id=" . $movie['id'] . "' class='btn'>Book Ticket</a>
-                    </div>
-                </div>";
-            }
-            ?>
+            <!-- Avengers: Endgame -->
+            <div class='movie-card'>
+                <img src='https://m.media-amazon.com/images/M/MV5BMTc5MDE2ODcwN15BMl5BanBnXkFtZTgwMzI2NzQ2NzM@._V1_.jpg' alt='Avengers Endgame'>
+                <div class='movie-info'>
+                    <h3>Avengers: Endgame</h3>
+                    <p>Action • 181 min</p>
+                    <p>A popular action movie available for cinema booking.</p>
+                    <a href='/customer/book-ticket.php?movie_id=1' class='btn'>Book Ticket</a>
+                </div>
+            </div>
+
+            <!-- Inside Out 2 -->
+            <div class='movie-card'>
+                <img src='https://m.media-amazon.com/images/M/MV5BZGI0YzVhY2UtYjJhZS00MWM5LWE4MzEtMzUyNGEzNWQ0Mjk5XkEyXkFqcGc@._V1_.jpg' alt='Inside Out 2'>
+                <div class='movie-info'>
+                    <h3>Inside Out 2</h3>
+                    <p>Animation • 96 min</p>
+                    <p>A family-friendly movie for customers to book online.</p>
+                    <a href='/customer/book-ticket.php?movie_id=2' class='btn'>Book Ticket</a>
+                </div>
+            </div>
+
+            <!-- Moana 2 -->
+            <div class='movie-card'>
+                <img src='https://m.media-amazon.com/images/M/MV5BZWEyNzU5ZjEtN2M2Yy00Y2E5LWI0ZjMtZTVkN2I4ZjYxZWIyXkEyXkFqcGc@._V1_.jpg' alt='Moana 2'>
+                <div class='movie-info'>
+                    <h3>Moana 2</h3>
+                    <p>Adventure • 100 min</p>
+                    <p>An upcoming adventure movie for online ticket reservations.</p>
+                    <a href='/customer/book-ticket.php?movie_id=3' class='btn'>Book Ticket</a>
+                </div>
+            </div>
         </div>
     </div>
 </body>
