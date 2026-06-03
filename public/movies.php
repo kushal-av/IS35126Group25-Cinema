@@ -94,7 +94,7 @@ require_once '../config/db.php';
         <div class="movie-grid">
             <!-- Avengers: Endgame -->
             <div class='movie-card'>
-                <img src='https://image.tmdb.org/t/p/w500/8i4Q5q4vZ8wM5oX4k2pJ4z7fKz9.jpg' alt='Avengers'>
+                <img src='https://m.media-amazon.com/images/M/MV5BMTc5MDE2ODcwN15BMl5BanBnXkFtZTgwMzI2NzQ2NzM@._V1_.jpg' alt='Avengers Endgame'>
                 <div class='movie-info'>
                     <h3>Avengers: Endgame</h3>
                     <p>Action • 181 min</p>
@@ -105,7 +105,7 @@ require_once '../config/db.php';
 
             <!-- Inside Out 2 -->
             <div class='movie-card'>
-                <img src='https://image.tmdb.org/t/p/w500/9m4J5v4z5z5z5z5z5z5z5z5z5z5z5.jpg' alt='Inside Out 2'>
+                <img src='https://m.media-amazon.com/images/M/MV5BZGI0YzVhY2UtYjJhZS00MWM5LWE4MzEtMzUyNGEzNWQ0Mjk5XkEyXkFqcGc@._V1_.jpg' alt='Inside Out 2'>
                 <div class='movie-info'>
                     <h3>Inside Out 2</h3>
                     <p>Animation • 96 min</p>
@@ -116,7 +116,7 @@ require_once '../config/db.php';
 
             <!-- Moana 2 -->
             <div class='movie-card'>
-                <img src='https://image.tmdb.org/t/p/w500/7z5z5z5z5z5z5z5z5z5z5z5z5z5z5z5.jpg' alt='Moana 2'>
+                <img src='https://m.media-amazon.com/images/M/MV5BZWEyNzU5ZjEtN2M2Yy00Y2E5LWI0ZjMtZTVkN2I4ZjYxZWIyXkEyXkFqcGc@._V1_.jpg' alt='Moana 2'>
                 <div class='movie-info'>
                     <h3>Moana 2</h3>
                     <p>Adventure • 100 min</p>
