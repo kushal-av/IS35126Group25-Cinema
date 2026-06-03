@@ -56,20 +56,16 @@ require_once '../config/db.php';
         .movie-card {
             background: rgba(30,0,0,0.85);
             border-radius: 12px;
-            overflow: hidden;
+            padding: 20px;
             transition: all 0.4s;
         }
         .movie-card:hover {
             transform: scale(1.05);
             box-shadow: 0 0 30px rgba(229,9,20,0.6);
         }
-        .movie-card img {
-            width: 100%;
-            height: 420px;
-            object-fit: cover;
-        }
-        .movie-info {
-            padding: 18px;
+        .movie-info h3 {
+            margin-bottom: 10px;
+            color: #ffd700;
         }
         .btn {
             display: block;
@@ -79,7 +75,7 @@ require_once '../config/db.php';
             text-decoration: none;
             text-align: center;
             border-radius: 8px;
-            margin-top: 12px;
+            margin-top: 15px;
             font-weight: bold;
         }
     </style>
@@ -92,38 +88,20 @@ require_once '../config/db.php';
         <h1>NOW SHOWING</h1>
         
         <div class="movie-grid">
-            <!-- Avengers: Endgame -->
-            <div class='movie-card'>
-                <img src='https://m.media-amazon.com/images/M/MV5BMTc5MDE2ODcwN15BMl5BanBnXkFtZTgwMzI2NzQ2NzM@._V1_.jpg' alt='Avengers Endgame'>
-                <div class='movie-info'>
-                    <h3>Avengers: Endgame</h3>
-                    <p>Action • 181 min</p>
-                    <p>A popular action movie available for cinema booking.</p>
-                    <a href='/customer/book-ticket.php?movie_id=1' class='btn'>Book Ticket</a>
-                </div>
-            </div>
-
-            <!-- Inside Out 2 -->
-            <div class='movie-card'>
-                <img src='https://m.media-amazon.com/images/M/MV5BZGI0YzVhY2UtYjJhZS00MWM5LWE4MzEtMzUyNGEzNWQ0Mjk5XkEyXkFqcGc@._V1_.jpg' alt='Inside Out 2'>
-                <div class='movie-info'>
-                    <h3>Inside Out 2</h3>
-                    <p>Animation • 96 min</p>
-                    <p>A family-friendly movie for customers to book online.</p>
-                    <a href='/customer/book-ticket.php?movie_id=2' class='btn'>Book Ticket</a>
-                </div>
-            </div>
-
-            <!-- Moana 2 -->
-            <div class='movie-card'>
-                <img src='https://m.media-amazon.com/images/M/MV5BZWEyNzU5ZjEtN2M2Yy00Y2E5LWI0ZjMtZTVkN2I4ZjYxZWIyXkEyXkFqcGc@._V1_.jpg' alt='Moana 2'>
-                <div class='movie-info'>
-                    <h3>Moana 2</h3>
-                    <p>Adventure • 100 min</p>
-                    <p>An upcoming adventure movie for online ticket reservations.</p>
-                    <a href='/customer/book-ticket.php?movie_id=3' class='btn'>Book Ticket</a>
-                </div>
-            </div>
+            <?php
+            $stmt = $pdo->query("SELECT * FROM movies ORDER BY status, title");
+            while ($movie = $stmt->fetch()) {
+                echo "
+                <div class='movie-card'>
+                    <div class='movie-info'>
+                        <h3>" . htmlspecialchars($movie['title']) . "</h3>
+                        <p>" . htmlspecialchars($movie['genre']) . " • " . $movie['duration'] . " min</p>
+                        <p>" . htmlspecialchars($movie['description']) . "</p>
+                        <a href='/customer/book-ticket.php?movie_id=" . $movie['id'] . "' class='btn'>Book Ticket</a>
+                    </div>
+                </div>";
+            }
+            ?>
         </div>
     </div>
 </body>
